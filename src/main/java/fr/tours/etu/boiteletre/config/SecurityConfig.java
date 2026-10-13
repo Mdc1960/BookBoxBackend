@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 /**
@@ -29,6 +30,10 @@ import java.util.List;
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
+
+    @Value("${frontend.url}")
+    private String frontendUrl;
+
 
     @Bean
     /**
@@ -49,7 +54,7 @@ public class SecurityConfig {
                // authorizing the call of the backend app
                 .cors(cors -> cors.configurationSource(request -> {
                     var corsConfig = new CorsConfiguration();
-                    corsConfig.setAllowedOrigins(List.of("http://localhost:4200"));
+                    corsConfig.setAllowedOrigins(List.of(frontendUrl));
                     corsConfig.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
                     corsConfig.setAllowedHeaders(List.of("*"));
                     corsConfig.setAllowCredentials(true);
@@ -60,13 +65,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // login and sig in
                         .requestMatchers("/api/auth/**").permitAll()// authentication public
-                        .requestMatchers(HttpMethod.GET, "api/coordinates/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/coordinates/**").permitAll()
                         // the API users accessible for admin only
                         //.requestMatchers(HttpMethod.GET, "/api/users/**").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/users/**").hasAnyRole("ADMIN","USER")
                         .requestMatchers(HttpMethod.PUT, "/api/users/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST,"api/users").permitAll()  // sig in for everyone
+                        .requestMatchers(HttpMethod.POST,"/api/users").permitAll()  // sig in for everyone
                         .requestMatchers(HttpMethod.GET,"/api/box/**", "/api/reservation/**").permitAll() // only reading
 
                          // for a user logging in only -> creating and deleting updating reservations and boxes

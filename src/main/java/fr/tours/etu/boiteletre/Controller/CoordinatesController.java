@@ -15,7 +15,6 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/api/coordinates")
 @RequiredArgsConstructor
 public class CoordinatesController {

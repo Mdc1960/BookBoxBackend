@@ -23,7 +23,9 @@ public class JwtService {
     private static final String SECRET_KEY =
             "my-super-secret-key-for-jwt-signing-123456";
 
-    private final long jwtExpiration = 2 * 60 * 60 * 1000; // 2h
+    //private final long jwtExpiration = 2 * 60 * 60 * 1000; // 2h
+
+    private final long jwtExpiration = 30 * 60 * 1000; // 2min
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));

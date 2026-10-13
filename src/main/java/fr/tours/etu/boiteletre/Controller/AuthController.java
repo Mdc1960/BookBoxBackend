@@ -16,7 +16,6 @@
      * @Version 1.0
      */
     @RestController
-    @CrossOrigin("*")
     @RequestMapping("api/auth")
     @RequiredArgsConstructor
     public class AuthController {

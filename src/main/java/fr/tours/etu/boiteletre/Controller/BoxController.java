@@ -16,7 +16,6 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
-@CrossOrigin("*")
 @RequiredArgsConstructor
 @RequestMapping("/api/box")
 public class BoxController {

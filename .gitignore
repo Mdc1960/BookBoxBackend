@@ -4,6 +4,10 @@ back-end/.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+./target/
+
+.env
+
 ### STS ###
 .apt_generated
 .classpath
@@ -19,6 +23,11 @@ back-end/.idea
 *.iml
 *.ipr
 
+run-backend.sh
+start-backed.sh
+
+
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -31,3 +40,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# Fichiers macOS
+.DS_Store

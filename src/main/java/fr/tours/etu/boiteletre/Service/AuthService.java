@@ -46,7 +46,8 @@ public class AuthService {
         return  new AuthResponseDTO(
                 token,
                 user.getUsername(),
-                user.getRole()
+                user.getRole(),
+                user.getUserId()
         );
     }
 
