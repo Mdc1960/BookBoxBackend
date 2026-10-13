@@ -3,7 +3,7 @@ name: Build and publish BookBox backend
 on:
   push:
     branches:
-      - main
+      - clean-deployment
   workflow_dispatch:
 
 permissions:
